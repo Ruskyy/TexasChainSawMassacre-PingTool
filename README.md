@@ -34,6 +34,13 @@ Before using this tool, make sure you have the following prerequisites installed
 
 That's it! You can use the Texas Chainsaw Ping Tool to monitor and evaluate the game server's ping performance and avoid laggy matches!
 
+
 If you encounter any issues or have questions, feel free to reach out for assistance.
+
+## ScreenShots
+
+![asas](https://github.com/Ruskyy/TexasChainSawMassacre-PingTool/assets/39529472/a63ff3d3-6a11-4199-b194-9941bfe1cabd)
+
+![asasasasa](https://github.com/Ruskyy/TexasChainSawMassacre-PingTool/assets/39529472/d84dc5f6-c9f2-4543-b399-df7072438542)
 
 
