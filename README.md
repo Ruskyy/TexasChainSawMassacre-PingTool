@@ -15,7 +15,7 @@ Before using this tool, make sure you have the following prerequisites installed
 
 2. Install the required Python packages by running the following command in the tool's directory:
 
-3. Run the tool using Python 3:
+3. Run the run.bat script !
 
 4. The tool will start monitoring DNS requests made by your machine.
 
