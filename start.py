@@ -3,6 +3,7 @@ import platform
 import subprocess
 import time
 import re
+from ping3 import ping
 from scapy.all import sniff, DNS, DNSQR
 
 # Function to check and install a Python package if not installed
