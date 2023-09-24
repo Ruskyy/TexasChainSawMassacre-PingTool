@@ -3,7 +3,6 @@ import platform
 import subprocess
 import time
 import re
-from ping3 import ping, verbose_ping
 from scapy.all import sniff, DNS, DNSQR
 
 # Function to check and install a Python package if not installed
@@ -32,7 +31,13 @@ strings_to_search = [
     "pfmsqosprod2-0.westeurope.cloudapp.azure.com",
     "pfmsqosprod2-0.australiaeast.cloudapp.azure.com",
     "pfmsqosprod2-0.japaneast.cloudapp.azure.com",
-    "pfmsqosprod2-0.japanwest.cloudapp.azure.com"
+    "pfmsqosprod2-0.japanwest.cloudapp.azure.com",
+    "pfmsqosprod2-0.southcentralus.cloudapp.azure.com",
+    "pfmsqosprod2-0.northcentralus.cloudapp.azure.com",
+    "pfmsqosprod2-0.uksouth.cloudapp.azure.com",
+    "pfmsqosprod2-0.ukwest.cloudapp.azure.com",
+    "pfmsqosprod2-0.canadacentral.cloudapp.azure.com",
+    "pfmsqosprod2-0.canadaeast.cloudapp.azure.com"
 ]
 
 # Additional pattern to search for
@@ -66,7 +71,6 @@ def dns_sniffer(pkt):
     if DNS in pkt:
         qname = pkt[DNSQR].qname.decode('utf-8')
 
-        # Check if there's a match in the initial search strings
         for search_string in strings_to_search:
             if search_string in qname:
                 print(f"Game server pinged: {search_string}")
@@ -83,7 +87,6 @@ def dns_sniffer(pkt):
             game_url = f"dns-{game_id}.{region}.cloudapp.azure.com"
             ping_successful = True
 
-            # Perform three pings and calculate the average
             ping_attempts = 3
             total_ping_time = 0
 
@@ -91,11 +94,9 @@ def dns_sniffer(pkt):
                 ping_result = ping(game_url)
                 if ping_result is not None:
                     total_ping_time += ping_result
-                    # Convert ping_result from seconds to milliseconds and round to 2 decimal places
                     ping_result_ms = round(ping_result * 1000, 2)
                     
                     if ping_result_ms < 1:
-                        # If the ping time is less than 1 ms, it's likely a very quick response
                         print("Ping:{GREEN}< 1 ms ms{RESET_COLOR}")
                         time.sleep(3)
                     else:
@@ -110,9 +111,17 @@ def dns_sniffer(pkt):
                 average_ping_ms = round((total_ping_time / ping_attempts) * 1000, 2)
                 colorized_average_ping = colorize_ping(average_ping_ms)
                 print(f"Average Ping: {colorized_average_ping}")
-                time.sleep(60)
+
+                while True:
+                    user_input = input("Press Enter to continue searching or 'q' to quit: ")
+                    if user_input.lower() == 'q':
+                        print("Exiting...")
+                        exit()
+                    elif user_input == '':
+                        print("Continuing search...")
+                        break
+
 try:
-    # Start sniffing DNS packets
     sniff(filter="udp port 53", prn=dns_sniffer, store=0)
 except Exception as e:
     if "winpcap is not installed" in str(e):
