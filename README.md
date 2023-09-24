@@ -8,7 +8,7 @@ Before using this tool, make sure you have the following prerequisites installed
 
 1. **Python 3:** If you don't have Python 3 installed, you can download it from the official website: <a href="https://www.python.org/downloads/" target="_blank">Python 3 Download</a>.
 
-2. **WinPcap:** WinPcap is a library required for packet capturing on Windows systems. You can download and install it from the following link: <a href="https://www.winpcap.org/install/default.htm" target="_blank">WinPcap Download/a>.
+2. **WinPcap:** WinPcap is a library required for packet capturing on Windows systems. You can download and install it from the following link: <a href="https://www.winpcap.org/install/default.htm" target="_blank">WinPcap Download</a>.
 
 ## Usage Instructions
 1. Clone or download the Texas Chainsaw Ping Tool repository to your computer.
